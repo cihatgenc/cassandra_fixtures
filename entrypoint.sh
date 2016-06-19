@@ -9,15 +9,16 @@ set -e
 
 repo="https://github.com/cihatgenc/cassandra_fixtures.git"
 localroot="/usr/local/bin"
+
 reponame="${repo##*/}"
 
-echo $reponame
+echo Git repo to clone is $reponame
 
 name=$(echo $reponame | cut -f 1 -d '.')
 
-echo $name
-
 git clone "$repo" "$localroot/$name"
+
+echo Executing: cqlsh --file="$localroot/$name/db/cassandra_fixtures.sql"
 
 exec cqlsh --file="$localroot/$name/db/cassandra_fixtures.sql"
 
