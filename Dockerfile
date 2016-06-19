@@ -12,8 +12,6 @@ MAINTAINER cihat@catwithboots.com
 
 # Get netcat and git
 RUN apt-get update && apt-get install -y netcat git && rm -rf /var/lib/apt/lists/*
-ADD db/entrypoint.sh /usr/local/bin/
-
-RUN ["chmod", "+x", "/usr/local/bin/cassandra_fixtures.sql"]
+ADD entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
